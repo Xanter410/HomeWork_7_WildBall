@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded => _contactCheck.IsGrounded;
     private bool _isJumping = false;
 
-    List<Interactable> interactableList;
+    Action<PlayerController> _cbInteractableObjects;
+    Action _cbPlayerDead;
 
     private void Awake()
     {
@@ -30,7 +31,6 @@ public class PlayerController : MonoBehaviour
         _contactCheck = GetComponent<ContactCheck>();
         _inputAction = new PlayerInputAction();
         RegisterCallbackFunc();
-        interactableList = new List<Interactable>();
     }
 
     private void FixedUpdate()
@@ -49,6 +49,30 @@ public class PlayerController : MonoBehaviour
             _rigidBody.AddForce(Vector3.up * _jumpSpeed, ForceMode.VelocityChange);
             _isJumping = false;
         }
+    }
+
+    public void PlayerKill()
+    {
+        if (_cbPlayerDead == null)
+            return;
+        _cbPlayerDead();
+    }
+
+    public void RegisterInteractableObjectsCallback(Action<PlayerController> callback)
+    {
+        _cbInteractableObjects += callback;
+    }
+    public void UnRegisterInteractableObjectsCallback(Action<PlayerController> callback)
+    {
+        _cbInteractableObjects -= callback;
+    }
+    public void RegisterPlayerDeadedCallback(Action callback)
+    {
+        _cbPlayerDead += callback;
+    }
+    public void UnRegisterPlayerDeadedCallback(Action callback)
+    {
+        _cbPlayerDead -= callback;
     }
 
     private void OnEnable()
@@ -87,19 +111,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
-        foreach (Interactable item in interactableList)
-        {
-            item.Activate();
-        }
-    }
-
-    public void RegisterTriggerInteract(Interactable func)
-    {
-        interactableList.Add(func);
-    }
-
-    public void UnRegisterTriggerInteract(Interactable func)
-    {
-        interactableList.Remove(func);
+        if (_cbInteractableObjects == null)
+            return;
+        _cbInteractableObjects(this);
     }
 }

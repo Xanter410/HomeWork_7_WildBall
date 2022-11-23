@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
 public class CameraController : MonoBehaviour
@@ -22,15 +18,23 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+        CursorOff();
         _offset = new Vector3(0, _height, _distance);
     }
 
     private void LateUpdate()
     {
-        _offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * _turnRightLeftSpeed, Vector3.up) * _offset;
         _offset = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * _turnUpDownSpeed, Vector3.right) * _offset;
+        _offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * _turnRightLeftSpeed, Vector3.up) * _offset;
+
         var position = _transformOfPlayer.position;
         transform.position = position + _offset;
         transform.LookAt(position);
+    }
+
+    private static void CursorOff()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

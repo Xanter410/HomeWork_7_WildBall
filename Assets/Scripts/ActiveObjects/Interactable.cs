@@ -1,10 +1,10 @@
 using UnityEngine;
 public interface IInteractable
 {
-    public void Activate();
+    public void Activate(PlayerController player);
 }
 
 public abstract class Interactable : MonoBehaviour, IInteractable
 {
-    public abstract void Activate();
+    public abstract void Activate(PlayerController player);
 }
