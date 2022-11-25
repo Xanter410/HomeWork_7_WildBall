@@ -3,81 +3,38 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class CameraCollision : MonoBehaviour
 {
-    [SerializeField] public Transform _transformOfPlayer;
-    public Transform referenceTransform;
-    public float collisionOffset = 0.3f; //To prevent Camera from clipping through Objects
-    public float cameraSpeed = 15f; //How fast the Camera should snap into position if there are no obstacles
+    [SerializeField] private Transform _transformOfPlayer;
+    [SerializeField] private Transform _referenceTransform;
+    [SerializeField] private float _collisionOffset = 0.3f;
+    [SerializeField] private float _cameraSpeed = 15f; 
+    private Vector3 _defaultPos;
+    private Vector3 _directionNormalized;
+    private Transform _parentTransform;
+    private float _defaultDistance;
 
-    Vector3 defaultPos;
-    Vector3 directionNormalized;
-    Transform parentTransform;
-    float defaultDistance;
-
-    // Start is called before the first frame update
     void Start()
     {
-        defaultPos = transform.localPosition;
-        directionNormalized = defaultPos.normalized;
-        parentTransform = transform.parent;
-        defaultDistance = Vector3.Distance(defaultPos, Vector3.zero);
-
-        //Lock cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        _defaultPos = transform.localPosition;
+        _directionNormalized = _defaultPos.normalized;
+        _parentTransform = transform.parent;
+        _defaultDistance = Vector3.Distance(_defaultPos, Vector3.zero);
     }
 
-    // LateUpdate is called after Update
     void LateUpdate()
     {
-        Vector3 currentPos = defaultPos;
+        Vector3 currentPos = _defaultPos;
         RaycastHit hit;
-        Vector3 dirTmp = parentTransform.TransformPoint(defaultPos) - referenceTransform.position;
-        if (Physics.SphereCast(referenceTransform.position, collisionOffset, dirTmp, out hit, defaultDistance))
+        Vector3 dirTmp = _parentTransform.TransformPoint(_defaultPos) - _referenceTransform.position;
+        if (Physics.SphereCast(_referenceTransform.position, _collisionOffset, dirTmp, out hit, _defaultDistance))
         {
-            currentPos = (directionNormalized * (hit.distance - collisionOffset));
+            currentPos = (_directionNormalized * (hit.distance - _collisionOffset));
 
             transform.localPosition = currentPos;
         }
         else
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, currentPos, Time.deltaTime * cameraSpeed);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, currentPos, Time.deltaTime * _cameraSpeed);
         }
         transform.LookAt(_transformOfPlayer.position);
     }
-
-
-    //[SerializeField] private Transform _transformOfPlayer;
-    //[SerializeField] private float _turnRightLeftSpeed = 5f;
-    //[SerializeField] private float _turnUpDownSpeed = 2.0f;
-    //[SerializeField] private float _distance = -5f;
-    //[SerializeField] private float _height = 3f;
-
-    //private Vector3 _offset;
-
-    //private void Awake()
-    //{
-    //    _transformOfPlayer = GameObject.FindWithTag("Player").transform;
-    //}
-
-    //private void Start()
-    //{
-    //    //CursorOff();
-    //    _offset = new Vector3(0, _height, _distance);
-    //}
-
-    //private void LateUpdate()
-    //{
-    //    _offset = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * _turnUpDownSpeed, Vector3.right) * _offset;
-    //    _offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * _turnRightLeftSpeed, Vector3.up) * _offset;
-
-    //    var position = _transformOfPlayer.position;
-    //    transform.position = position + _offset;
-    //    transform.LookAt(position);
-    //}
-
-    //private static void CursorOff()
-    //{
-    //    Cursor.lockState = CursorLockMode.Locked;
-    //    Cursor.visible = false;
-    //}
 }

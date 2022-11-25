@@ -10,6 +10,7 @@ using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Transform _cameraParentTransform;
     [SerializeField] private float _groundAcceleration = 5f;
     [SerializeField] private float _airAcceleration = 3f;
     [SerializeField] private float _jumpSpeed = 2f;
@@ -17,17 +18,6 @@ public class PlayerController : MonoBehaviour
     private ContactCheck _contactCheck;
     private Rigidbody _rigidBody;
     private Vector2 _direction;
-
-    [SerializeField] private Transform _cameraParentTransform;
-    [SerializeField] private float lookSpeed = 2.0f;
-    [SerializeField] private float minlookXLimit = -30.0f;
-    [SerializeField] private float maxLookXLimit = 60.0f;
-    Vector2 rotation = Vector2.zero;
-    [SerializeField] private float _distance = -5f;
-    [SerializeField] private float _height = 3f;
-
-    private Vector3 _offset;
-
 
     private bool _isGrounded => _contactCheck.IsGrounded;
     private bool _isJumping = false;
@@ -60,21 +50,6 @@ public class PlayerController : MonoBehaviour
             _rigidBody.AddForce(Vector3.up * _jumpSpeed, ForceMode.VelocityChange);
             _isJumping = false;
         }
-    }
-
-
-    private void Start()
-    {
-        _offset = new Vector3(0, _height, _distance);
-    }
-    private void Update()
-    {
-        rotation.y += UnityEngine.Input.GetAxis("Mouse X") * lookSpeed;
-        rotation.x += -UnityEngine.Input.GetAxis("Mouse Y") * lookSpeed;
-        rotation.x = Mathf.Clamp(rotation.x, minlookXLimit, maxLookXLimit);
-        _cameraParentTransform.localRotation = Quaternion.Euler(rotation.x, rotation.y, 0);
-        _cameraParentTransform.position = transform.position;
-        
     }
 
     public void PlayerKill()
