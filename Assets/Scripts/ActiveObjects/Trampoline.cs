@@ -10,8 +10,6 @@ public class Trampoline : Interactable
 
         Rigidbody rb = player.GetComponent<Rigidbody>();
 
-        Debug.Log(player.transform);
-
         rb.AddForce(-hitVector, ForceMode.Impulse);
     }
 }

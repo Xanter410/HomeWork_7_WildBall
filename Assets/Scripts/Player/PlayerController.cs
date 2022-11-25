@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UIElements;
 using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
@@ -16,17 +17,27 @@ public class PlayerController : MonoBehaviour
     private ContactCheck _contactCheck;
     private Rigidbody _rigidBody;
     private Vector2 _direction;
-    private Transform _inputSpace;
+
+    [SerializeField] private Transform _cameraParentTransform;
+    [SerializeField] private float lookSpeed = 2.0f;
+    [SerializeField] private float minlookXLimit = -30.0f;
+    [SerializeField] private float maxLookXLimit = 60.0f;
+    Vector2 rotation = Vector2.zero;
+    [SerializeField] private float _distance = -5f;
+    [SerializeField] private float _height = 3f;
+
+    private Vector3 _offset;
+
 
     private bool _isGrounded => _contactCheck.IsGrounded;
     private bool _isJumping = false;
 
     Action<PlayerController> _cbInteractableObjects;
+    Action<int> _cbInteractableAddOrRemove;
     Action _cbPlayerDead;
 
     private void Awake()
     {
-        _inputSpace = Camera.main.transform;
         _rigidBody = GetComponent<Rigidbody>();
         _contactCheck = GetComponent<ContactCheck>();
         _inputAction = new PlayerInputAction();
@@ -37,8 +48,8 @@ public class PlayerController : MonoBehaviour
     {
         var accelerate = _isGrounded ? _groundAcceleration : _airAcceleration;
 
-        var forward = Vector3.ProjectOnPlane(_inputSpace.forward, Vector3.up);
-        var right = Vector3.ProjectOnPlane(_inputSpace.right, Vector3.up);
+        var forward = Vector3.ProjectOnPlane(_cameraParentTransform.forward, Vector3.up);
+        var right = Vector3.ProjectOnPlane(_cameraParentTransform.right, Vector3.up);
 
         Vector3 force = (right.normalized * _direction.x + forward.normalized * _direction.y) * accelerate;
 
@@ -51,6 +62,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    private void Start()
+    {
+        _offset = new Vector3(0, _height, _distance);
+    }
+    private void Update()
+    {
+        rotation.y += UnityEngine.Input.GetAxis("Mouse X") * lookSpeed;
+        rotation.x += -UnityEngine.Input.GetAxis("Mouse Y") * lookSpeed;
+        rotation.x = Mathf.Clamp(rotation.x, minlookXLimit, maxLookXLimit);
+        _cameraParentTransform.localRotation = Quaternion.Euler(rotation.x, rotation.y, 0);
+        _cameraParentTransform.position = transform.position;
+        
+    }
+
     public void PlayerKill()
     {
         if (_cbPlayerDead == null)
@@ -61,10 +87,12 @@ public class PlayerController : MonoBehaviour
     public void RegisterInteractableObjectsCallback(Action<PlayerController> callback)
     {
         _cbInteractableObjects += callback;
+        InteractableAddOrRemove(1);
     }
     public void UnRegisterInteractableObjectsCallback(Action<PlayerController> callback)
     {
         _cbInteractableObjects -= callback;
+        InteractableAddOrRemove(-1);
     }
     public void RegisterPlayerDeadedCallback(Action callback)
     {
@@ -73,6 +101,14 @@ public class PlayerController : MonoBehaviour
     public void UnRegisterPlayerDeadedCallback(Action callback)
     {
         _cbPlayerDead -= callback;
+    }
+    public void RegisterInteractableObjectsAddorRemCallback(Action<int> callback)
+    {
+        _cbInteractableAddOrRemove += callback;
+    }
+    public void UnRegisterInteractableObjectsAddorRemCallback(Action<int> callback)
+    {
+        _cbInteractableAddOrRemove -= callback;
     }
 
     private void OnEnable()
@@ -83,6 +119,13 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         _inputAction.Disable();
+    }
+
+    private void InteractableAddOrRemove(int addOrRemove)
+    {
+        if (_cbInteractableAddOrRemove == null)
+            return;
+        _cbInteractableAddOrRemove(addOrRemove);
     }
 
     private void RegisterCallbackFunc()

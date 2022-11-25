@@ -8,7 +8,17 @@ public class AreaTriggerCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<PlayerController>(out player))
+        ActivateIfPlayer(collision.gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ActivateIfPlayer(other.gameObject);
+    }
+
+    private void ActivateIfPlayer(GameObject gameObject)
+    {
+        if (gameObject.TryGetComponent<PlayerController>(out player))
         {
             foreach (var item in _interactableObject)
             {
@@ -16,4 +26,5 @@ public class AreaTriggerCollision : MonoBehaviour
             }
         }
     }
+
 }
