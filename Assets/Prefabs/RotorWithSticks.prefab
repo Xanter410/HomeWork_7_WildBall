@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8283696225726393395}
   - component: {fileID: 8283696225726393394}
   - component: {fileID: 8283696225726393393}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BaseBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 8283696226252000597}
   - component: {fileID: 8283696226252000596}
   - component: {fileID: 8283696226252000599}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stick_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8283696226370513871}
   - component: {fileID: 8283696226370513868}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RotorWithSticks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 8283696226514205015}
   - component: {fileID: 8283696226514205014}
   - component: {fileID: 8283696226514205009}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stick_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 8283696226677432589}
   - component: {fileID: 8283696226677432624}
   - component: {fileID: 8283696226677432625}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rotor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

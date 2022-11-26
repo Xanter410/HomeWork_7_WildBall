@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2982290190288204470}
   - component: {fileID: 2982290190288204465}
   - component: {fileID: 2982290190288204464}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2982290191145198357}
   - component: {fileID: 2982290191145198362}
   - component: {fileID: 2982290191145198363}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7324279735020173701}
   - component: {fileID: 7324279735020173698}
   - component: {fileID: 7324279735020173699}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Middle_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7324279735060043372}
   - component: {fileID: 7324279735060043369}
   - component: {fileID: 7324279735060043370}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Middle_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 7324279735460110153}
   - component: {fileID: 7324279735460110166}
   - component: {fileID: 7324279735460110167}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Middle_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 7324279735667286611}
   - component: {fileID: 7324279735667286608}
   - component: {fileID: 7324279735667286609}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Middle_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 7324279735680857147}
   - component: {fileID: 7324279735680857144}
   - component: {fileID: 7324279735680857145}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Middle_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7324279735950952837}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 7324279736281105442}
   - component: {fileID: 7324279736281105455}
   - component: {fileID: 7324279736281105440}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Middle_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 7324279736348684333}
   - component: {fileID: 7324279736348684330}
   - component: {fileID: 7324279736348684331}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 7324279736398047851}
   - component: {fileID: 7324279736398047850}
   - component: {fileID: 7324279736398047852}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lattice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 7324279736409286704}
   - component: {fileID: 7324279736409286718}
   - component: {fileID: 7324279736409286719}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 7324279736463497568}
   - component: {fileID: 7324279736463497581}
   - component: {fileID: 7324279736463497582}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +790,7 @@ Transform:
   m_GameObject: {fileID: 7324279736463497569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.8, y: 1.7, z: 0}
-  m_LocalScale: {x: 0.4, y: 3.4, z: 0.2}
+  m_LocalScale: {x: 0.4, y: 3.4, z: 0.19}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7324279736398047853}
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 7324279736570649721}
   - component: {fileID: 7324279736570649734}
   - component: {fileID: 7324279736570649735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -940,7 +940,7 @@ GameObject:
   - component: {fileID: 7324279736722910545}
   - component: {fileID: 7324279736722910558}
   - component: {fileID: 7324279736722910559}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,7 +956,7 @@ Transform:
   m_GameObject: {fileID: 7324279736722910546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.8, y: 1.7, z: 0}
-  m_LocalScale: {x: 0.4, y: 3.4, z: 0.2}
+  m_LocalScale: {x: 0.4, y: 3.4, z: 0.19}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7324279736398047853}
@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 7324279736903649820}
   - component: {fileID: 7324279736903649817}
   - component: {fileID: 7324279736903649818}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Middle_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

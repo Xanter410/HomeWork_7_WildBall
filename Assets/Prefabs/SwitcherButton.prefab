@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5021222607363862729}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SwitcherButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 5021222608378520644}
   - component: {fileID: 5021222608378520645}
   - component: {fileID: 5021222608378520665}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1093215fee9702441a4a315e47d621e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactableObject: {fileID: 0}
+  _interactableObject:
+  - {fileID: 0}
 --- !u!1 &5021222609004801947
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ GameObject:
   - component: {fileID: 5021222609004801951}
   - component: {fileID: 5021222609004801948}
   - component: {fileID: 5021222609004801936}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +290,7 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
-  m_Spring: 250
+  m_Spring: 150
   m_Damper: 20
   m_MinDistance: 0
   m_MaxDistance: 0

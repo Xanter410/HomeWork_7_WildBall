@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _groundAcceleration = 5f;
     [SerializeField] private float _airAcceleration = 3f;
     [SerializeField] private float _jumpSpeed = 2f;
+    [SerializeField] private float _deadZoneUnderLevel = -10f;
     private PlayerInputAction _inputAction;
     private ContactCheck _contactCheck;
     private Rigidbody _rigidBody;
@@ -49,6 +50,11 @@ public class PlayerController : MonoBehaviour
         {
             _rigidBody.AddForce(Vector3.up * _jumpSpeed, ForceMode.VelocityChange);
             _isJumping = false;
+        }
+
+        if (_rigidBody.position.y <= _deadZoneUnderLevel)
+        {
+            PlayerKill();
         }
     }
 
