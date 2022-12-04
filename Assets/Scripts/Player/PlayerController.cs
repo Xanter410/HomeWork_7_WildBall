@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     Action<PlayerController> _cbInteractableObjects;
     Action<int> _cbInteractableAddOrRemove;
     Action _cbPlayerDead;
+    Action _cbPickUpCoin;
 
     private void Awake()
     {
@@ -64,6 +65,12 @@ public class PlayerController : MonoBehaviour
             return;
         _cbPlayerDead();
     }
+    public void PickUpCoin()
+    {
+        if (_cbPickUpCoin == null)
+            return;
+        _cbPickUpCoin();
+    }
 
     public void RegisterInteractableObjectsCallback(Action<PlayerController> callback)
     {
@@ -90,6 +97,14 @@ public class PlayerController : MonoBehaviour
     public void UnRegisterInteractableObjectsAddorRemCallback(Action<int> callback)
     {
         _cbInteractableAddOrRemove -= callback;
+    }
+    public void RegisterPickUpCoinCallback(Action callback)
+    {
+        _cbPickUpCoin += callback;
+    }
+    public void UnRegisterPickUpCoinCallback(Action callback)
+    {
+        _cbPickUpCoin -= callback;
     }
 
     private void OnEnable()

@@ -169,7 +169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5e148de6cdf2d164aa3e3f90ce8c852c, type: 2}
+  - {fileID: 2100000, guid: 54eb0a880c35ecd4fa56b3b6c33e8aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -248,6 +248,7 @@ MonoBehaviour:
   _groundAcceleration: 15
   _airAcceleration: 3
   _jumpSpeed: 6
+  _deadZoneUnderLevel: -10
 --- !u!1 &3833714032763588078
 GameObject:
   m_ObjectHideFlags: 0
